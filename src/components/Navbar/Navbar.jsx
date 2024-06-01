@@ -103,10 +103,10 @@ const Navvar = () => {
         <NavbarContent justify="end">
         
         { user?<div className="cursor-pointer"><Avatar isBordered color="default" src="https://i.pravatar.cc/150?u=a042581f4e29026024d" /></div>:  <NavbarItem>
-            <Button as={Link} color="primary" className=" font-bold uppercase" href="#" variant="flat">
+            <button className="flex justify-center items-center gap-1 md:text-xl bg-primary text-white py-2 px-1 font-semibold rounded-md">
               Join Us
               <FaPlus></FaPlus>
-            </Button>
+            </button>
           </NavbarItem>}
         </NavbarContent>
 
