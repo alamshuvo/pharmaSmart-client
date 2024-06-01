@@ -28,6 +28,7 @@ export default {
     
   },
   darkMode: "class",
-    plugins: [nextui()]
+    plugins: [nextui(),require('daisyui')]
+    // plugins:,require('daisyui'),
 }
 

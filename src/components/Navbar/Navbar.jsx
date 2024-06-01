@@ -44,7 +44,7 @@ const Navvar = () => {
       </li>
       <NavLink>
         <li>
-          <FaShoppingCart className="text-4xl text-primary" />
+          <FaShoppingCart className="text-2xl text-primary" />
         </li>
       </NavLink>
       <li>
@@ -66,7 +66,7 @@ const Navvar = () => {
     <div className="font-jost">
       <Navbar
         isBordered
-        shouldHideOnScroll
+     
         isMenuOpen={isMenuOpen}
         onMenuOpenChange={setIsMenuOpen}
       >
@@ -114,7 +114,7 @@ const Navvar = () => {
                 className="flex justify-center items-center gap-1 uppercase bg-primary text-white md:p-2 p-1  rounded-md "
               >
                 Join Us
-                <FaPlus></FaPlus>
+                <p className="hidden md:flex"><FaPlus></FaPlus></p>
               </Link>
             </NavbarItem>
           )}
