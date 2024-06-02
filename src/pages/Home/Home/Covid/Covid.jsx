@@ -35,17 +35,17 @@ const Covid = () => {
   return (
     <div className="font-popins">
       <Title heading={"vacine"} short={"covid vacine"}></Title>
-      <div className="bg-fixed overflow-hidden relative">
+      <div className="bg-fixed flex justify-center overflow-hidden relative">
         <img
           className="hover:scale-110 hover:rotate-1 cursor-pointer duration-1000"
           src="https://i.ibb.co/s9cNGZR/covid.webp"
           alt=""
         />
         <div className="absolute top-0 left-1  md:top-10 md:left-8">
-          <h1 className="uppercase text-primary md:mb-4 font-bold md:text-5xl">
+          <h1 className="uppercase text-primary md:mb-4 font-bold md:text-3xl">
             Covid -19
           </h1>
-          <p className="md:text-3xl md:mb-4 text-black font-semibold font-jost">
+          <p className="md:text-xl md:mb-4 text-black font-semibold font-jost">
             Protext The Community <br /> And Yourself Get Vaccinated
           </p>
           <Button className="bg-primary text-white " onPress={onOpen}>Stay Tune</Button>
