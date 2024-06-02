@@ -9,7 +9,7 @@ const HeadingUpBanner = ({img,text1,text2}) => {
           alt=""
         />
         <div className="absolute   bottom-0">
-          <p className=" text-3xl font-jost text-primary font-bold ">
+          <p className=" text-xl font-jost text-primary font-bold ">
             {" "}
             <span>{text1}</span> / <span className="">{text2}</span>
           </p>

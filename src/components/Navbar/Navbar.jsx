@@ -7,15 +7,47 @@ import {
   NavbarMenu,
   NavbarContent,
   NavbarItem,
- 
 } from "@nextui-org/react";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+} from "@nextui-org/react";
+
 import { Link, NavLink } from "react-router-dom";
-import { FaPlus, FaShoppingCart } from "react-icons/fa";
+import { FaBookOpen, FaPenFancy, FaPlus, FaShoppingCart } from "react-icons/fa";
+import { LuLogOut } from "react-icons/lu";
 import { Avatar } from "@nextui-org/react";
+import UseAuth from "../../hooks/UseAuth";
+import { useQuery } from "@tanstack/react-query";
+import UseAxiosPublic from "../../hooks/UseAxiosPublic";
+import Swal from "sweetalert2";
 
 const Navvar = () => {
-  const user = false;
+  const { user,logoutUser } = UseAuth();
+  const axiosPublic = UseAxiosPublic();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  //   const {data:data=[],refetch}=useQuery({
+  //     queryKey:"data",
+  //     queryFn:async()=>{
+  //         const res=await axiosPublic.get("/users")
+  //     }
+  //   })
+  const handleLogout=()=>{
+    console.log("handle logout");
+    logoutUser()
+    .then(res=>{
+      console.log(res);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "User Logout Sucessfully",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    })
+  }
   const navlink = (
     <>
       <li>
@@ -42,11 +74,7 @@ const Navvar = () => {
           Shop
         </NavLink>
       </li>
-      <NavLink>
-        <li>
-          <FaShoppingCart className="text-2xl text-primary" />
-        </li>
-      </NavLink>
+
       <li>
         <NavLink
           className={({ isActive }) =>
@@ -59,6 +87,11 @@ const Navvar = () => {
           Language
         </NavLink>
       </li>
+      <NavLink>
+        <li>
+          <FaShoppingCart className="text-2xl text-primary" />
+        </li>
+      </NavLink>
     </>
   );
   const menuItems = [navlink];
@@ -66,7 +99,6 @@ const Navvar = () => {
     <div className="font-jost">
       <Navbar
         isBordered
-     
         isMenuOpen={isMenuOpen}
         onMenuOpenChange={setIsMenuOpen}
       >
@@ -76,7 +108,7 @@ const Navvar = () => {
           />
         </NavbarContent>
 
-        <NavbarContent className="sm:hidden pr-3" justify="center">
+        <NavbarContent className="sm:hidden pr-3" justify="start">
           <NavbarBrand>
             <Link to={"/"} className="font-semibold uppercase font-jost">
               {" "}
@@ -85,9 +117,8 @@ const Navvar = () => {
             </Link>
           </NavbarBrand>
         </NavbarContent>
-
-        <NavbarContent className="hidden sm:flex gap-4" justify="center">
-          <NavbarBrand>
+        {/* <NavbarContent className="">
+        <NavbarBrand>
             <img src="/public/logo.jpg" className="w-[50px] mr-2 " alt="" />
             <Link to={"/"} className=" text-inherit uppercase font-jost font-bold">
               {" "}
@@ -95,26 +126,76 @@ const Navvar = () => {
               <span className="text-primary">health and care </span>
             </Link>
           </NavbarBrand>
+        </NavbarContent> */}
+
+        <NavbarContent className="hidden sm:flex gap-4" justify="center">
+          <NavbarContent className="">
+            <NavbarBrand>
+              <img src="/public/logo.jpg" className="w-[50px] mr-2 " alt="" />
+              <Link
+                to={"/"}
+                className=" text-inherit uppercase font-jost font-bold"
+              >
+                {" "}
+                PharmaSmart <br />
+                <span className="text-primary">health and care </span>
+              </Link>
+            </NavbarBrand>
+          </NavbarContent>
           {navlink}
         </NavbarContent>
 
         <NavbarContent justify="end">
           {user ? (
             <div className="cursor-pointer">
-              <Avatar
+              {/* <Avatar
                 isBordered
                 color="default"
-                src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
-              />
+                src={user.photoURL}
+                
+                
+              /> */}
+              
+              <Dropdown className="bg-primary font-jost">
+                <DropdownTrigger>
+                <Avatar
+                isBordered
+                color="default"
+                src={user.photoURL}
+                
+                />
+                </DropdownTrigger>
+                <DropdownMenu
+                
+                  aria-label="Action event example"
+                //   onAction={(key) => alert(key)}
+                  className=" md:p-8 my-5 "
+                >
+                  <DropdownItem value={null} className="text-white border-b-3 mb-2 " key="update"  textValue="update">
+                    <span className="text-xl flex justify-center items-center gap-2"> Update Profile <FaPenFancy></FaPenFancy></span></DropdownItem>
+                  <DropdownItem   className="text-white border-b-3 mb-2" key="dashboard"  textValue="dashboard"><span className="text-xl flex justify-center items-center gap-2">Dashboard 
+                    <FaBookOpen></FaBookOpen> </span></DropdownItem>
+                  <DropdownItem value={null} onClick={handleLogout}
+                    key="logout" textValue="logout"
+                    className=" bg-special-button-hover border-b-3 mt-2 text-black"
+                    
+                  >
+                    <span className="text-xl flex justify-center items-center gap-2">LogOut <LuLogOut />  </span>
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+              
             </div>
           ) : (
             <NavbarItem>
               <Link
                 to={"/login"}
-                className="flex justify-center items-center gap-1 uppercase bg-primary text-white md:p-2 p-1  rounded-md "
+                className="flex justify-center items-center gap-1 uppercase bg-primary text-white md:p-2 p-1 font-popins rounded-md "
               >
                 Join Us
-                <p className="hidden md:flex"><FaPlus></FaPlus></p>
+                <p className="hidden md:flex">
+                  <FaPlus></FaPlus>
+                </p>
               </Link>
             </NavbarItem>
           )}

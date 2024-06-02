@@ -1,15 +1,93 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import HeadingUpBanner from "../../../components/headingUpBanner/HeadingUpBanner";
 import { useState } from "react";
 import { Input } from "@nextui-org/react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import UseAxiosPublic from "../../../hooks/UseAxiosPublic";
+import UseAuth from "../../../hooks/UseAuth";
+import Helmeta from "../../../components/Helmet/Helmeta";
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+const img_hosting_key = import.meta.env.VITE_img_hosting_key;
+console.log(img_hosting_key);
+const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 
 const SignUp = () => {
   const [isVisible, setIsVisible] = useState(false);
-
   const toggleVisibility = () => setIsVisible(!isVisible);
+  const axiosPublic = UseAxiosPublic();
+  const { createUser, updateUserProfile } = UseAuth();
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    const photo = { image: data.photo[0] };
+    // console.log(photo);
+    const response = await axiosPublic.post(img_hosting_api, photo, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    // console.log("ekhan tekeh ", response.data.data.display_url);
+    // console.log(data,response.data,"cobi r jinis cier");
+    createUser(data.email, data.password).then((res) => {
+      const logdUser = res.user;
+    //   console.log(logdUser);
+      const photo= response.data.data.display_url
+
+      updateUserProfile(logdUser.name,photo)
+        .then(() => {
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+            // password: data.password,
+            photo: response.data.data.display_url,
+            role: data.role,
+          };
+          console.log(userInfo);
+            axiosPublic.post("/users",userInfo)
+            .then(res=>{
+              if (res.data.insertedId) {
+                Swal.fire({
+                  title: "User created Successfully ",
+                  showClass: {
+                    popup: `
+                      animate__animated
+                      animate__fadeInUp
+                      animate__faster
+                    `
+                  },
+                  hideClass: {
+                    popup: `
+                      animate__animated
+                      animate__fadeOutDown
+                      animate__faster
+                    `
+                  }
+                });
+                reset();
+                navigate("/")
+              }
+            })
+        //   Profile updated!
+        //   ...
+        })
+        .catch((error) => {
+          // An error occurred
+          // ...
+        });
+    });
+  };
+  console.log(watch("name"));
   return (
     <div>
+      <Helmeta title={"signup"}></Helmeta>
       <HeadingUpBanner
         img={"https://i.ibb.co/YhqJb6k/126742.jpg"}
         text1={"Home"}
@@ -23,7 +101,7 @@ const SignUp = () => {
           </p>
 
           <div className="md:w-1/2 mx-auto font-popins  border-2 rounded-t-large p-2">
-            <form className="card-body ">
+            <form onSubmit={handleSubmit(onSubmit)} className="card-body ">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">User Name</span>
@@ -31,6 +109,7 @@ const SignUp = () => {
                 <input
                   type="text"
                   placeholder="Name"
+                  {...register("name")}
                   className="input input-bordered"
                   required
                 />
@@ -42,6 +121,7 @@ const SignUp = () => {
                 <input
                   type="email"
                   placeholder="email"
+                  {...register("email")}
                   className="input input-bordered"
                   required
                 />
@@ -75,7 +155,36 @@ const SignUp = () => {
                   }
                   type={isVisible ? "text" : "password"}
                   className=""
+                  {...register("password", {
+                    required: true,
+                    minLength: 6,
+                    maxLength: 20,
+                    pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+                  })}
                 />
+                {/* password validation start */}
+                {errors.password?.type === "required" && (
+                  <p className="text-red-500 font-bold">
+                    password must be 6 char
+                  </p>
+                )}
+                {errors.password?.type === "maxLength" && (
+                  <p className="text-red-500 font-bold">
+                    password must have a 20 char
+                  </p>
+                )}
+                {errors.password?.type === "minLength" && (
+                  <p className="text-red-500 font-bold">
+                    password must be 6 char
+                  </p>
+                )}
+                {errors.password?.type === "pattern" && (
+                  <p className="text-red-500 font-bold">
+                    password must have one upeercase one lowar case one number
+                    and one special char
+                  </p>
+                )}
+                {/* password validation end */}
               </div>
 
               <div className="form-control">
@@ -84,22 +193,29 @@ const SignUp = () => {
                 </label>
                 <input
                   type="file"
+                  {...register("photo", { required: true })}
                   className="file-input file-input-bordered file-input-primary w-full max-w-xs"
                 />
+               
+                {errors.photo && <span>Photo is required</span>}
               </div>
 
-             <div className="form-control">
-                  <label className="label">
-                      <span className="label-text">Select Role</span>
-                    </label>
-                  <select className="select select-bordered w-full max-w-xs">
-                    <option disabled selected>
-                      Select Role
-                    </option>
-                    <option>User</option>
-                    <option>Seller</option>
-                  </select>
-             </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Select Role</span>
+                </label>
+                <select
+                  defaultValue={"default"}
+                  {...register("role")}
+                  className="select select-bordered w-full max-w-xs"
+                >
+                  <option disabled value={"default"}>
+                    Select Role
+                  </option>
+                  <option value={"user"}>User</option>
+                  <option value={"seller"}>Seller</option>
+                </select>
+              </div>
 
               <p className="capitalize">
                 Already Have An account ?

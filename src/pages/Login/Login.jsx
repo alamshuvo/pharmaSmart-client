@@ -5,13 +5,56 @@ import { Input } from "@nextui-org/react";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import HeadingUpBanner from "../../components/headingUpBanner/HeadingUpBanner";
+import UseAuth from "../../hooks/UseAuth";
+import { useForm } from "react-hook-form";
+import UseAxiosPublic from "../../hooks/UseAxiosPublic";
+
+
 
 const Login = () => {
-  const [isVisible, setIsVisible] = useState(false);
+    const {
+        register,
+        handleSubmit,
+        watch,
+        reset,
+        formState: { errors },
+      } = useForm();
 
+
+  const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
+  const {loginUser,gogleSignIn}=UseAuth();
+  const axiosPublic=UseAxiosPublic();
+  const navigate=useNavigate()
+const handleGoogleSubmit=()=>{
+    gogleSignIn()
+    .then(res=>{
+        console.log(res.user);
+        const data={
+            name:res.user?.displayName,
+            email:res.user?.email,
+            photo:res.user?.photoURL,
+            role:"user"
+        }
+        axiosPublic.post("/users",data)
+        .then(res=>{
+            console.log(res.data);
+            navigate("/")
+        })
+    })
+    .then(error=>{
+        console.log(error);
+    })
+}
+
+
+
+
+
+
+
   return (
     <div>
       <Helmeta title={"login"}></Helmeta>
@@ -30,6 +73,7 @@ const Login = () => {
                 <span className="label-text">Email</span>
               </label>
               <input
+               {...register("email")}
                 type="email"
                 placeholder="email"
                 className="input input-bordered"
@@ -47,7 +91,7 @@ const Login = () => {
                 required
               /> */}
               <Input
-            
+                 {...register("password")}
                 variant="bordered"
                 placeholder="Enter your password"
                 endContent={
@@ -78,7 +122,7 @@ const Login = () => {
           {/* google login */}
           <div className="divider">Login With Another Way</div>
           <div>
-            <button className="flex justify-center items-center gap-2 btn w-full bg-primary text-white text-xl hover:text-black">Google <FcGoogle></FcGoogle></button>
+            <button onClick={handleGoogleSubmit} className="flex justify-center items-center gap-2 btn w-full bg-primary text-white text-xl hover:text-black">Google <FcGoogle></FcGoogle></button>
           </div>
         </div>
       </div>
