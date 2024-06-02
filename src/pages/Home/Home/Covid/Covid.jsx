@@ -37,15 +37,15 @@ const Covid = () => {
       <Title heading={"vacine"} short={"covid vacine"}></Title>
       <div className="bg-fixed flex justify-center overflow-hidden relative">
         <img
-          className="hover:scale-110 hover:rotate-1 cursor-pointer duration-1000"
+          className="hover:scale-110 hover:rotate-1 h-[300px] md:h-full cursor-pointer duration-1000"
           src="https://i.ibb.co/s9cNGZR/covid.webp"
           alt=""
         />
-        <div className="absolute top-0 left-1  md:top-10 md:left-8">
-          <h1 className="uppercase text-primary md:mb-4 font-bold md:text-3xl">
+        <div className="absolute  top-10 left-10">
+          <h1 className="uppercase text-primary mb-4 font-bold md:text-3xl">
             Covid -19
           </h1>
-          <p className="md:text-xl md:mb-4 text-black font-semibold font-jost">
+          <p className="md:text-xl mb-4 text-black font-semibold font-jost">
             Protext The Community <br /> And Yourself Get Vaccinated
           </p>
           <Button className="bg-primary text-white " onPress={onOpen}>Stay Tune</Button>
