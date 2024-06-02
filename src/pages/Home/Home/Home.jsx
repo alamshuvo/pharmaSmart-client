@@ -1,6 +1,7 @@
 import Helmeta from "../../../components/Helmet/Helmeta";
 import Banner from "./Banner/Banner";
 import Category from "./Category/Category";
+import Covid from "./Covid/Covid";
 import Discount from "./DiscountCard/Discount";
 import Shortbanar from "./shortbanar/Shortbanar";
 
@@ -19,6 +20,9 @@ const Home = () => {
       </div>
       <div className="my-10 mt-40">
         <Discount></Discount>
+      </div>
+      <div className="my-10 mt-40">
+        <Covid></Covid>
       </div>
     </div>
   );
