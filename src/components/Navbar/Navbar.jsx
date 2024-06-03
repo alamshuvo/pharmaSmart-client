@@ -94,7 +94,7 @@ const Navvar = () => {
         </NavLink> */}
         <Dropdown className="font-popins  outline-none">
           <DropdownTrigger>
-            <Button variant="normal" className="text-[18px] border-b-1 border-primary">Languages</Button>
+            <Button variant="normal" className="text-[18px] border-b-1p border-primary">Languages</Button>
           </DropdownTrigger>
           <DropdownMenu aria-label="Static Actions">
             <DropdownItem key="new">Bangla</DropdownItem>
@@ -199,10 +199,12 @@ const Navvar = () => {
                     key="dashboard"
                     textValue="dashboard"
                   >
-                    <span className="text-xl flex justify-center items-center gap-2">
-                      Dashboard
-                      <FaBookOpen></FaBookOpen>{" "}
-                    </span>
+                  <Link to={"dashboard"}>
+                      <span className="text-xl flex justify-center items-center gap-2">
+                        Dashboard
+                        <FaBookOpen></FaBookOpen>{" "}
+                      </span>
+                  </Link>
                   </DropdownItem>
                   <DropdownItem
                     value={null}
