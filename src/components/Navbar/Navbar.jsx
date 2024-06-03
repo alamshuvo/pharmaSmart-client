@@ -69,7 +69,7 @@ const Navvar = () => {
               ? " p-2 text-white rounded-lg bg-primary border border-b-4   "
               : "text-center border-b-3 border-primary font-normal gap-6 text-[18px] "
           }
-          to={"/"}
+          to={"/shop"}
         >
           Shop
         </NavLink>

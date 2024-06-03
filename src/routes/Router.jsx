@@ -8,6 +8,7 @@ import Login from "../pages/Login/Login";
 import SignUp from "../pages/Home/Signup/SignUp";
 import CategoryDetails from "../pages/CategoryDetails/CategoryDetails";
 import UpdateProfile from "../pages/UpdateProfile/UpdateProfile";
+import Shop from "../pages/Shop/Shop";
 
 
 
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
         {
           path:"/updateprofile",
           element:<UpdateProfile></UpdateProfile>
+        },
+        {
+          path:"/shop",
+          element:<Shop></Shop>
         }
       ]
     },

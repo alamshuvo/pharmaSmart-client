@@ -10,6 +10,7 @@ import HeadingUpBanner from "../../components/headingUpBanner/HeadingUpBanner";
 import UseAuth from "../../hooks/UseAuth";
 import { useForm } from "react-hook-form";
 import UseAxiosPublic from "../../hooks/UseAxiosPublic";
+import Swal from "sweetalert2";
 
 
 
@@ -41,8 +42,28 @@ const handleGoogleSubmit=()=>{
         axiosPublic.post("/users",data)
         .then(res=>{
             console.log(res.data);
-            navigate("/")
+           
+            if (res.data.insertedId==null) {
+              Swal.fire({
+                title: "User Already Exist In Database",
+                showClass: {
+                  popup: `
+                    animate__animated
+                    animate__fadeInUp
+                    animate__faster
+                  `
+                },
+                hideClass: {
+                  popup: `
+                    animate__animated
+                    animate__fadeOutDown
+                    animate__faster
+                  `
+                }
+              });
+            }
         })
+        navigate("/")
     })
     .then(error=>{
         console.log(error);
