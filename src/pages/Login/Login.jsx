@@ -5,7 +5,7 @@ import { Input } from "@nextui-org/react";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import HeadingUpBanner from "../../components/headingUpBanner/HeadingUpBanner";
 import UseAuth from "../../hooks/UseAuth";
 import { useForm } from "react-hook-form";
@@ -18,7 +18,7 @@ const Login = () => {
     const {
         register,
         handleSubmit,
-        watch,
+       
         reset,
         formState: { errors },
       } = useForm();
@@ -29,6 +29,10 @@ const Login = () => {
   const {loginUser,gogleSignIn}=UseAuth();
   const axiosPublic=UseAxiosPublic();
   const navigate=useNavigate()
+ 
+  const location=useLocation();
+
+  const from=location.state?.from?.pathname || "/"
 const handleGoogleSubmit=()=>{
     gogleSignIn()
     .then(res=>{
@@ -70,6 +74,26 @@ const handleGoogleSubmit=()=>{
     })
 }
 
+const onSubmit=async (data)=>{
+  console.log(data.email,data.password);
+  loginUser(data.email,data.password)
+  .then(res=>{
+    console.log(res.user);
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "User Login Sucessfully",
+      showConfirmButton: false,
+      timer: 1500
+    });
+    navigate(from,{replace:true})
+    reset()
+  })
+
+
+
+}
+
 
 
 
@@ -88,7 +112,7 @@ const handleGoogleSubmit=()=>{
         </p>
 
         <div className="md:w-1/2 mx-auto font-popins  border-2 rounded-t-large p-2">
-          <form className="card-body ">
+          <form onSubmit={handleSubmit(onSubmit)} className="card-body ">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
