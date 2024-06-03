@@ -9,6 +9,7 @@ import SignUp from "../pages/Home/Signup/SignUp";
 import CategoryDetails from "../pages/CategoryDetails/CategoryDetails";
 import UpdateProfile from "../pages/UpdateProfile/UpdateProfile";
 import Shop from "../pages/Shop/Shop";
+import Error from "../pages/Error/Error";
 
 
 
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
     {
       path: "/",
       element: <Mainlayouts></Mainlayouts>,
+      errorElement:<Error></Error>,
       children:[
         {
             index:true,
