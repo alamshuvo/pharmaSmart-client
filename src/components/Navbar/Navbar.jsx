@@ -14,6 +14,13 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "@nextui-org/react";
+import {
+ 
+  
+  
+ 
+  Button,
+} from "@nextui-org/react";
 
 import { Link, NavLink } from "react-router-dom";
 import { FaBookOpen, FaPenFancy, FaPlus, FaShoppingCart } from "react-icons/fa";
@@ -25,7 +32,7 @@ import UseAxiosPublic from "../../hooks/UseAxiosPublic";
 import Swal from "sweetalert2";
 
 const Navvar = () => {
-  const { user,logoutUser,loading } = UseAuth();
+  const { user, logoutUser, loading } = UseAuth();
   const axiosPublic = UseAxiosPublic();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   //   const {data:data=[],refetch}=useQuery({
@@ -34,20 +41,19 @@ const Navvar = () => {
   //         const res=await axiosPublic.get("/users")
   //     }
   //   })
-  const handleLogout=()=>{
+  const handleLogout = () => {
     console.log("handle logout");
-    logoutUser()
-    .then(res=>{
+    logoutUser().then((res) => {
       console.log(res);
       Swal.fire({
         position: "top-end",
         icon: "success",
         title: "User Logout Sucessfully",
         showConfirmButton: false,
-        timer: 1500
+        timer: 1500,
       });
-    })
-  }
+    });
+  };
   const navlink = (
     <>
       <li>
@@ -76,7 +82,7 @@ const Navvar = () => {
       </li>
 
       <li>
-        <NavLink
+        {/* <NavLink
           className={({ isActive }) =>
             isActive
               ? " p-2 text-white rounded-lg bg-primary border border-b-4   "
@@ -85,7 +91,18 @@ const Navvar = () => {
           to={"/"}
         >
           Language
-        </NavLink>
+        </NavLink> */}
+        <Dropdown className="font-popins  outline-none">
+          <DropdownTrigger>
+            <Button variant="normal" className="text-[18px] border-b-1 border-primary">Languages</Button>
+          </DropdownTrigger>
+          <DropdownMenu aria-label="Static Actions">
+            <DropdownItem key="new">Bangla</DropdownItem>
+            <DropdownItem key="copy">English</DropdownItem>
+            <DropdownItem key="edit">Hindi</DropdownItem>
+           
+          </DropdownMenu>
+        </Dropdown>
       </li>
       <NavLink>
         <li>
@@ -95,129 +112,149 @@ const Navvar = () => {
     </>
   );
   const menuItems = [navlink];
-  return ( loading? <p>Loading.......</p> : <div className="font-jost">
-  <Navbar
-    isBordered
-    isMenuOpen={isMenuOpen}
-    onMenuOpenChange={setIsMenuOpen}
-  >
-    <NavbarContent className="sm:hidden" justify="start">
-      <NavbarMenuToggle
-        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-      />
-    </NavbarContent>
+  return loading ? (
+    <p>Loading.......</p>
+  ) : (
+    <div className="font-jost">
+      <Navbar
+        isBordered
+        isMenuOpen={isMenuOpen}
+        onMenuOpenChange={setIsMenuOpen}
+      >
+        <NavbarContent className="sm:hidden" justify="start">
+          <NavbarMenuToggle
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          />
+        </NavbarContent>
 
-    <NavbarContent className="sm:hidden pr-3" justify="start">
-      <NavbarBrand>
-        <Link to={"/"} className="font-semibold uppercase font-jost">
-          {" "}
-          PharmaSmart <br />
-          <span className="text-primary">health and care </span>
-        </Link>
-      </NavbarBrand>
-    </NavbarContent>
-     <NavbarContent className="hidden md:flex">
-        <NavbarBrand>
-          <img src="/public/logo.jpg" className="w-[50px] mr-2 " alt="" />
-          <Link
-            to={"/"}
-            className=" text-inherit uppercase font-jost font-bold"
-          >
-            {" "}
-            PharmaSmart <br />
-            <span className="text-primary">health and care </span>
-          </Link>
-        </NavbarBrand>
-      </NavbarContent>
+        <NavbarContent className="sm:hidden pr-3" justify="start">
+          <NavbarBrand>
+            <Link to={"/"} className="font-semibold uppercase font-jost">
+              {" "}
+              PharmaSmart <br />
+              <span className="text-primary">health and care </span>
+            </Link>
+          </NavbarBrand>
+        </NavbarContent>
+        <NavbarContent className="hidden md:flex">
+          <NavbarBrand>
+            <img src="/public/logo.jpg" className="w-[50px] mr-2 " alt="" />
+            <Link
+              to={"/"}
+              className=" text-inherit uppercase font-jost font-bold"
+            >
+              {" "}
+              PharmaSmart <br />
+              <span className="text-primary">health and care </span>
+            </Link>
+          </NavbarBrand>
+        </NavbarContent>
 
-    <NavbarContent className="hidden sm:flex gap-4" justify="center">
-     
-      {navlink}
-    </NavbarContent>
+        <NavbarContent className="hidden sm:flex gap-4" justify="center">
+          {navlink}
+        </NavbarContent>
 
-    <NavbarContent justify="end">
-      {user ? (
-        <div className="cursor-pointer">
-          {/* <Avatar
+        <NavbarContent justify="end">
+          {user ? (
+            <div className="cursor-pointer">
+              {/* <Avatar
             isBordered
             color="default"
             src={user.photoURL}
             
             
           /> */}
-          
-          <Dropdown className="bg-primary font-jost">
-            <DropdownTrigger>
-            <Avatar
-             referrerPolicy="no-referrer"
-            isBordered
-            color="default"
-            src={user?.photoURL}
-            
-            
-            />
-            </DropdownTrigger>
-            <DropdownMenu
-            
-              aria-label="Action event example"
-            //   onAction={(key) => alert(key)}
-              className=" md:p-8 my-5 "
-            >
-             
-             <DropdownItem value={null} className="text-white border-b-3 mb-2 " key="update"  textValue="update">
-             <Link to={"/updateprofile"}> <span className="text-xl flex justify-center items-center gap-2"> Update Profile <FaPenFancy></FaPenFancy></span> </Link></DropdownItem>
-            
-              <DropdownItem   className="text-white border-b-3 mb-2" key="dashboard"  textValue="dashboard"><span className="text-xl flex justify-center items-center gap-2">Dashboard 
-                <FaBookOpen></FaBookOpen> </span></DropdownItem>
-              <DropdownItem value={null} onClick={handleLogout}
-                key="logout" textValue="logout"
-                className=" bg-special-button-hover border-b-3 mt-2 text-black"
-                
-              >
-                <span className="text-xl flex justify-center items-center gap-2">LogOut <LuLogOut />  </span>
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-          
-        </div>
-      ) : (
-        <NavbarItem>
-          <Link
-            to={"/login"}
-            className="flex justify-center items-center gap-1 uppercase bg-primary text-white md:p-2 p-1 font-popins rounded-md "
-          >
-            Join Us
-            <p className="hidden md:flex">
-              <FaPlus></FaPlus>
-            </p>
-          </Link>
-        </NavbarItem>
-      )}
-    </NavbarContent>
 
-    <NavbarMenu>
-      {menuItems.map((item, index) => (
-        <NavbarMenuItem key={`${item}-${index}`}>
-          <Link
-            className="w-full flex flex-col justify-start gap-4"
-            color={
-              index === 2
-                ? "warning"
-                : index === menuItems.length - 1
-                ? "danger"
-                : "foreground"
-            }
-            href={item}
-            size="lg"
-          >
-            {item}
-          </Link>
-        </NavbarMenuItem>
-      ))}
-    </NavbarMenu>
-  </Navbar>
-</div>
-   
+              <Dropdown className="bg-primary font-jost">
+                <DropdownTrigger>
+                  <Avatar
+                    referrerPolicy="no-referrer"
+                    isBordered
+                    color="default"
+                    src={user?.photoURL}
+                  />
+                </DropdownTrigger>
+                <DropdownMenu
+                  aria-label="Action event example"
+                  //   onAction={(key) => alert(key)}
+                  className=" md:p-8 my-5 "
+                >
+                  <DropdownItem
+                    value={null}
+                    className="text-white border-b-3 mb-2 "
+                    key="update"
+                    textValue="update"
+                  >
+                    <Link to={"/updateprofile"}>
+                      {" "}
+                      <span className="text-xl flex justify-center items-center gap-2">
+                        {" "}
+                        Update Profile <FaPenFancy></FaPenFancy>
+                      </span>{" "}
+                    </Link>
+                  </DropdownItem>
+
+                  <DropdownItem
+                    className="text-white border-b-3 mb-2"
+                    key="dashboard"
+                    textValue="dashboard"
+                  >
+                    <span className="text-xl flex justify-center items-center gap-2">
+                      Dashboard
+                      <FaBookOpen></FaBookOpen>{" "}
+                    </span>
+                  </DropdownItem>
+                  <DropdownItem
+                    value={null}
+                    onClick={handleLogout}
+                    key="logout"
+                    textValue="logout"
+                    className=" bg-special-button-hover border-b-3 mt-2 text-black"
+                  >
+                    <span className="text-xl flex justify-center items-center gap-2">
+                      LogOut <LuLogOut />{" "}
+                    </span>
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </div>
+          ) : (
+            <NavbarItem>
+              <Link
+                to={"/login"}
+                className="flex justify-center items-center gap-1 uppercase bg-primary text-white md:p-2 p-1 font-popins rounded-md "
+              >
+                Join Us
+                <p className="hidden md:flex">
+                  <FaPlus></FaPlus>
+                </p>
+              </Link>
+            </NavbarItem>
+          )}
+        </NavbarContent>
+
+        <NavbarMenu>
+          {menuItems.map((item, index) => (
+            <NavbarMenuItem key={`${item}-${index}`}>
+              <Link
+                className="w-full flex flex-col justify-start gap-4"
+                color={
+                  index === 2
+                    ? "warning"
+                    : index === menuItems.length - 1
+                    ? "danger"
+                    : "foreground"
+                }
+                href={item}
+                size="lg"
+              >
+                {item}
+              </Link>
+            </NavbarMenuItem>
+          ))}
+        </NavbarMenu>
+      </Navbar>
+    </div>
   );
 };
 

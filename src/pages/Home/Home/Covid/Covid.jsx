@@ -41,7 +41,7 @@ const Covid = () => {
           src="https://i.ibb.co/s9cNGZR/covid.webp"
           alt=""
         />
-        <div className="absolute  top-10 left-10">
+        <div className="absolute  top-20 w-full left-20 ">
           <h1 className="uppercase text-primary mb-4 font-bold md:text-3xl">
             Covid -19
           </h1>
