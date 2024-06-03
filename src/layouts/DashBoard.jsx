@@ -2,24 +2,11 @@ import { FaAd, FaBook, FaHome, FaPaypal, FaUsers } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import { BiSolidCategoryAlt } from "react-icons/bi";
 import { FaUpDown } from "react-icons/fa6";
-import { useQuery } from "@tanstack/react-query";
-import UseAxiosPublic from "../hooks/UseAxiosPublic";
+
 
 const DashBoard = () => {
-  const axiosPublic = UseAxiosPublic();
-  const { data: users = [], refetch } = useQuery({
-    queryKey: ["users"],
-    queryFn: async () => {
-      const res = await axiosPublic.get("/users");
-      return res.data;
-    },
-  });
-
-  console.log(users);
-  // const isAdmin=users.map(user=>{
-  //     console.log(user.role);
-  // })
-  // console.log(isAdmin);
+  
+ 
   const isAdmin = true;
 
   return (
