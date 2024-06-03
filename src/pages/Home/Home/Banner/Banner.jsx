@@ -5,7 +5,7 @@ const Banner = () => {
   return (
     <div className="flex md:flex-row flex-col gap-3">
       {/* slider div */}
-      <div className="md:w-4/6">
+      <div className="md:w-4/6 h-full">
         <Slide></Slide>
       </div>
       {/* side div */}

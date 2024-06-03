@@ -172,8 +172,10 @@ const Navvar = () => {
             //   onAction={(key) => alert(key)}
               className=" md:p-8 my-5 "
             >
-              <DropdownItem value={null} className="text-white border-b-3 mb-2 " key="update"  textValue="update">
-                <span className="text-xl flex justify-center items-center gap-2"> Update Profile <FaPenFancy></FaPenFancy></span></DropdownItem>
+             
+             <DropdownItem value={null} className="text-white border-b-3 mb-2 " key="update"  textValue="update">
+             <Link to={"/updateprofile"}> <span className="text-xl flex justify-center items-center gap-2"> Update Profile <FaPenFancy></FaPenFancy></span> </Link></DropdownItem>
+            
               <DropdownItem   className="text-white border-b-3 mb-2" key="dashboard"  textValue="dashboard"><span className="text-xl flex justify-center items-center gap-2">Dashboard 
                 <FaBookOpen></FaBookOpen> </span></DropdownItem>
               <DropdownItem value={null} onClick={handleLogout}

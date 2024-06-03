@@ -29,7 +29,7 @@ const Slide = () => {
       >
         <SwiperSlide>
           <div>
-            <img  className="w-full" src="https://i.ibb.co/WysVt19/handsenitaizer.webp" alt="" />
+            <img  className="w-full h-full" src="https://i.ibb.co/WysVt19/handsenitaizer.webp" alt="" />
             <div>
 
             </div>
@@ -38,7 +38,7 @@ const Slide = () => {
         <SwiperSlide>
           <div>
             {" "}
-            <img src="https://i.ibb.co/GCRZwWZ/skincare.webp" alt="" />
+            <img className="h-full" src="https://i.ibb.co/GCRZwWZ/skincare.webp" alt="" />
           </div>
         </SwiperSlide>
         {/* <SwiperSlide>Slide 3</SwiperSlide>

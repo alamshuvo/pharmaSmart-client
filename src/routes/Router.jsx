@@ -7,6 +7,7 @@ import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/Home/Signup/SignUp";
 import CategoryDetails from "../pages/CategoryDetails/CategoryDetails";
+import UpdateProfile from "../pages/UpdateProfile/UpdateProfile";
 
 
 
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
         {
           path:"/categorydetails",
           element:<CategoryDetails></CategoryDetails>
+        },
+        {
+          path:"/updateprofile",
+          element:<UpdateProfile></UpdateProfile>
         }
       ]
     },
