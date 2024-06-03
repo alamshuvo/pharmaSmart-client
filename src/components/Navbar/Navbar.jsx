@@ -116,19 +116,7 @@ const Navvar = () => {
         </Link>
       </NavbarBrand>
     </NavbarContent>
-    {/* <NavbarContent className="">
-    <NavbarBrand>
-        <img src="/public/logo.jpg" className="w-[50px] mr-2 " alt="" />
-        <Link to={"/"} className=" text-inherit uppercase font-jost font-bold">
-          {" "}
-          PharmaSmart <br />
-          <span className="text-primary">health and care </span>
-        </Link>
-      </NavbarBrand>
-    </NavbarContent> */}
-
-    <NavbarContent className="hidden sm:flex gap-4" justify="center">
-      <NavbarContent className="">
+     <NavbarContent className="hidden md:flex">
         <NavbarBrand>
           <img src="/public/logo.jpg" className="w-[50px] mr-2 " alt="" />
           <Link
@@ -141,6 +129,9 @@ const Navvar = () => {
           </Link>
         </NavbarBrand>
       </NavbarContent>
+
+    <NavbarContent className="hidden sm:flex gap-4" justify="center">
+     
       {navlink}
     </NavbarContent>
 
