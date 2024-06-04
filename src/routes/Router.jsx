@@ -11,17 +11,17 @@ import UpdateProfile from "../pages/UpdateProfile/UpdateProfile";
 import Shop from "../pages/Shop/Shop";
 import Error from "../pages/Error/Error";
 import DashBoard from "../layouts/DashBoard";
-import AdminHome from "../pages/Dashboard/Dashboard/AdminHome/AdminHome";
+
 import ManageUsers from "../pages/Dashboard/Dashboard/ManageUsers/ManageUsers";
 import ManageCategory from "../pages/Dashboard/Dashboard/ManageCategory/ManageCategory";
 import Paymentmanagement from "../pages/Dashboard/Dashboard/PaymentManagement/Paymentmanagement";
 import SalesReport from "../pages/Dashboard/Dashboard/SalesReport/SalesReport";
 import Advertisement from "../pages/Dashboard/Dashboard/Advertisement/Advertisement";
-import PaymentHistory from "../pages/Dashboard/User/PaymentHistory/PaymentHistory";
-import SellerHome from "../pages/Dashboard/Seller/SellerHome/SellerHome";
+
 import ManageMedicine from "../pages/Dashboard/Seller/ManageMedicine/ManageMedicine";
 import PaymentSeller from "../pages/Dashboard/Seller/PaymentSeller/PaymentSeller";
 import AdvertisementSeller from "../pages/Dashboard/Seller/Advertisement/AdvertisementSeller";
+import DashboardHome from "../pages/Dashboard/Common/DashboardHome";
 
 
 
@@ -63,8 +63,8 @@ const router = createBrowserRouter([
       errorElement:<Error></Error>,
       children:[
         {
-          path:"home",
-          element:<AdminHome></AdminHome>
+          index:true,
+          element:<DashboardHome></DashboardHome>
         },
 
         // admin related routes
@@ -92,10 +92,7 @@ const router = createBrowserRouter([
 
         // seller related routes
 
-       {
-        path:"sellerhome",
-        element:<SellerHome></SellerHome>
-       },
+     
        {
         path:"managemedicine",
         element:<ManageMedicine></ManageMedicine>
@@ -110,10 +107,7 @@ const router = createBrowserRouter([
        },
 
         // user related routes
-        {
-          path:'payment',
-          element:<PaymentHistory></PaymentHistory>
-        }
+      
       ]
     }
   ]);

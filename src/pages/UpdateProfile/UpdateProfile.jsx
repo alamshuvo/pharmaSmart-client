@@ -95,7 +95,7 @@ const UpdateProfile = () => {
               </div>
               <div className="form-control mt-6">
                 <button className="btn bg-primary text-white hover:text-black">
-                  Login
+                  Update Profile
                 </button>
               </div>
               

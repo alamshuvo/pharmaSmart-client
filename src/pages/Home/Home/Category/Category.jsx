@@ -31,7 +31,7 @@ const Category = () => {
                 />
               </div>
               <div className="font-popins">
-                <h1 className="p-2 text-xl">Category : Syrup</h1>
+                <h1 className="p-2 text-xl">Category : syrup</h1>
                 <p className="text-xs p-2 uppercase">Number of medicine : </p>
               </div>
             </div>
@@ -47,7 +47,7 @@ const Category = () => {
                 />
               </div>
               <div className="font-popins">
-                <h1 className="p-2 text-xl">Category : Injection</h1>
+                <h1 className="p-2 text-xl">Category : injection</h1>
                 <p className="text-xs p-2 uppercase">Number of medicine : </p>
               </div>
             </div>
@@ -63,7 +63,7 @@ const Category = () => {
                 />
               </div>
               <div className="font-popins">
-                <h1 className="p-2 text-xl">Category : Tablet</h1>
+                <h1 className="p-2 text-xl">Category : tablet</h1>
                 <p className="text-xs p-2 uppercase">Number of medicine : </p>
               </div>
             </div>
@@ -80,7 +80,7 @@ const Category = () => {
                 />
               </div>
               <div className="font-popins">
-                <h1 className="p-2 text-xl">Category : Capsul</h1>
+                <h1 className="p-2 text-xl">Category : capsul</h1>
                 <p className="text-xs p-2 uppercase">Number of medicine : </p>
               </div>
             </div>
@@ -96,7 +96,7 @@ const Category = () => {
                 />
               </div>
               <div className="font-popins">
-                <h1 className="p-2 text-xl">Category : Others</h1>
+                <h1 className="p-2 text-xl">Category : others</h1>
                 <p className="text-xs p-2 uppercase">Number of medicine : </p>
               </div>
             </div>

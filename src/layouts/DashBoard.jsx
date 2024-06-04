@@ -20,8 +20,8 @@ const DashBoard = () => {
 
   return (
     // dashboard navigation
-    <div className="flex">
-      <div className="drawer lg:drawer-open">
+    <div className="flex ">
+      <div className="drawer lg:drawer-open ">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col ">
           {/* Page content here */}
@@ -49,7 +49,7 @@ const DashBoard = () => {
             {isAdmin ? (
               <ul className="md:p-4 p-1   md:flex md:flex-col md:justify-start md:items-start">
                 <li className="mb-3 border-b-3">
-                  <NavLink to={"/dashboard/home"}   className={({ isActive }) =>
+                  <NavLink to={"/dashboard"} end   className={({ isActive }) =>
                         isActive
                           ? "  text-special-button-hover border-special-button-hover "
                           : "text-center border-b-3 border-primary font-normal gap-6 text-[18px] "
@@ -122,7 +122,8 @@ const DashBoard = () => {
                 <ul className="md:p-4 p-1  md:flex md:flex-col md:justify-start md:items-start">
                   <li className="mb-3 border-b-3">
                     <NavLink
-                      to={"/dashboard/sellerhome"}
+                      to={"/dashboard"} 
+                      end
                       className={({ isActive }) =>
                         isActive
                           ? "  text-special-button-hover border-special-button-hover "
@@ -186,7 +187,8 @@ const DashBoard = () => {
                 <ul className=" md:flex md:flex-col md:justify-start md:items-start">
                   <li className="mb-3 border-b-3">
                     <NavLink
-                      to={"/dashboard/payment"}
+                      to={"/dashboard"}
+                      end
                       className={({ isActive }) =>
                         isActive
                           ? "  text-special-button-hover border-special-button-hover "
