@@ -19,7 +19,7 @@ const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 
 
 
-const Modala = ({ text }) => {
+const Modala = ({ text,refetch }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const axiosPublic = UseAxiosPublic();
   const { user } = UseAuth();
@@ -27,13 +27,8 @@ const Modala = ({ text }) => {
   const {
     register,
     handleSubmit,
-    watch,
-    reset,
     formState: { errors },
   } = useForm(
-    // defaultValues:{
-    //   discount:"0"
-    // }
   );
   const onSubmit = async (data) => {
     console.log(data);
@@ -59,12 +54,32 @@ const Modala = ({ text }) => {
       company: data.company,
       email: user.email,
     };
-    console.log(a);
-    // console.log("ekhan tekeh ", response.data.data.display_url);
-    // console.log(data,response.data,"cobi r jinis cier");
+   
 
-   await axiosPublic.post("/medicine",a)
+   await axiosPublic.post("/medicine",a);
+   refetch()
   };
+
+  const handlemedicine=()=>{
+
+    Swal.fire({
+      title: "Medicine Added ",
+      showClass: {
+        popup: `
+          animate__animated
+          animate__fadeInUp
+          animate__faster
+        `
+      },
+      hideClass: {
+        popup: `
+          animate__animated
+          animate__fadeOutDown
+          animate__faster
+        `
+      }
+    });
+  }
 
   return (
     <div>
@@ -80,9 +95,6 @@ const Modala = ({ text }) => {
                 <form onSubmit={handleSubmit(onSubmit)} className="">
                   <Input
                     autoFocus
-                    //   endContent={
-                    //     <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-                    //   }
                     {...register("name")}
                     label="Item Name"
                     placeholder="Item Name"
@@ -91,9 +103,6 @@ const Modala = ({ text }) => {
                     className="mt-3"
                   />
                   <Input
-                    //   endContent={
-                    //     <LockIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
-                    //   }
                     {...register("generecname")}
                     label="Generec Name"
                     placeholder="Generic Name"
@@ -134,7 +143,6 @@ const Modala = ({ text }) => {
                     placeholder="discount price"
                     type="number"
                     defaultValue={0}
-                    // value={0}
                     variant="bordered"
                     className="mt-3"
                   />
@@ -146,10 +154,6 @@ const Modala = ({ text }) => {
                   />
 
                   {errors.photo && <span>Photo is required</span>}
-
-                  {/* <label className="label">
-                  <span className="label-text">Select Role</span>
-                </label> */}
                   <select
                     defaultValue={"default"}
                     {...register("category")}
@@ -179,11 +183,9 @@ const Modala = ({ text }) => {
                     <option value={"acme"}>Acme</option>
                     <option value={"labaid"}>LabAid</option>
                   </select>
-                  {/* <Button color="primary" onPress={onClose} >
-                  Add Medicine
-                </Button> */}
+                  
                   <div className="form-control mt-6">
-                    <button className="btn bg-primary text-white hover:text-black">
+                    <button onClick={handlemedicine} className="btn bg-primary text-white hover:text-black">
                       Add Medicine
                     </button>
                   </div>

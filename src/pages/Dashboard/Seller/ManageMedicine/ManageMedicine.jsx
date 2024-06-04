@@ -14,7 +14,7 @@ const ManageMedicine = () => {
 const axiosPublic=UseAxiosPublic();
 const {user}=UseAuth()
 
-  const { data:medicine=[], isPending } = useQuery({
+  const { data:medicine=[], isPending,refetch } = useQuery({
     queryKey: ["medicine"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/medicine/${user?.email}`)
@@ -24,8 +24,7 @@ const {user}=UseAuth()
 console.log(medicine);
 
   const dataArray = medicine.map((item, index) => ({
-    // SerialNumber: index + 1,
-    // Name: item?.name,
+   
     ItemName:item?.name,
     generic: item?.generic,
     Category:item?.category,
@@ -36,6 +35,7 @@ console.log(medicine);
     
    
   }));
+ 
 
 
 
@@ -45,7 +45,8 @@ console.log(medicine);
       <Helmeta title={"Manage Medicine"}></Helmeta>
       <Title heading={"Medicines"} short={"manage medicines"}></Title>
       <div className="flex justify-center items-center my-5">
-        <Modala text={"Add Medicine"}></Modala>
+        <Modala text={"Add Medicine"} refetch={refetch}></Modala>
+      
        
       </div>
       <Table
