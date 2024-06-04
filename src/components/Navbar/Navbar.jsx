@@ -30,11 +30,15 @@ import UseAuth from "../../hooks/UseAuth";
 import { useQuery } from "@tanstack/react-query";
 import UseAxiosPublic from "../../hooks/UseAxiosPublic";
 import Swal from "sweetalert2";
+import UseAdmin from "../../hooks/UseAdmin";
+import UseSeller from "../../hooks/UseAdmin";
 
 const Navvar = () => {
   const { user, logoutUser, loading } = UseAuth();
   const axiosPublic = UseAxiosPublic();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isAdmin]=UseAdmin();
+  const[isSeller]=UseSeller()
   //   const {data:data=[],refetch}=useQuery({
   //     queryKey:"data",
   //     queryFn:async()=>{

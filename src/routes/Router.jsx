@@ -58,7 +58,7 @@ const router = createBrowserRouter([
       ]
     },
     {
-      path:"dashboard",
+      path:`dashboard`,
       element:<DashBoard></DashBoard>,
       errorElement:<Error></Error>,
       children:[

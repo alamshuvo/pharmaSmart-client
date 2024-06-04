@@ -19,19 +19,19 @@ const Home = () => {
         <Banner></Banner>
       </div>
     
-      <div className="my-10 mt-40">
+      <div className="my-10 md:mt-40 mt-28">
         <Category></Category>
       </div>
-      <div className="my-10 mt-40">
+      <div className="my-10 md:mt-40 mt-28">
         <Discount></Discount>
       </div>
-      <div className="my-10 mt-40">
+      <div className="my-10 md:mt-40 mt-28">
         <Covid></Covid>
       </div>
-      <div className="my-10 mt-40">
+      <div className="my-10 md:mt-40 mt-28">
         <OurLatestBlog></OurLatestBlog>
       </div>
-      <div className="my-10 mt-40">
+      <div className="my-10 md:mt-40 mt-28">
         <EarlyShipment></EarlyShipment>
       </div>
     </div>
