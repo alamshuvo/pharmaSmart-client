@@ -17,6 +17,11 @@ import ManageCategory from "../pages/Dashboard/Dashboard/ManageCategory/ManageCa
 import Paymentmanagement from "../pages/Dashboard/Dashboard/PaymentManagement/Paymentmanagement";
 import SalesReport from "../pages/Dashboard/Dashboard/SalesReport/SalesReport";
 import Advertisement from "../pages/Dashboard/Dashboard/Advertisement/Advertisement";
+import PaymentHistory from "../pages/Dashboard/User/PaymentHistory/PaymentHistory";
+import SellerHome from "../pages/Dashboard/Seller/SellerHome/SellerHome";
+import ManageMedicine from "../pages/Dashboard/Seller/ManageMedicine/ManageMedicine";
+import PaymentSeller from "../pages/Dashboard/Seller/PaymentSeller/PaymentSeller";
+import AdvertisementSeller from "../pages/Dashboard/Seller/Advertisement/AdvertisementSeller";
 
 
 
@@ -62,7 +67,7 @@ const router = createBrowserRouter([
           element:<AdminHome></AdminHome>
         },
 
-        // admin related api
+        // admin related routes
         {
           path:"manageusers",
           element:<ManageUsers></ManageUsers>
@@ -82,6 +87,32 @@ const router = createBrowserRouter([
         {
           path:'advertise',
           element:<Advertisement></Advertisement>
+        },
+
+
+        // seller related routes
+
+       {
+        path:"sellerhome",
+        element:<SellerHome></SellerHome>
+       },
+       {
+        path:"managemedicine",
+        element:<ManageMedicine></ManageMedicine>
+       },
+       {
+        path:"sellerpayment",
+        element:<PaymentSeller></PaymentSeller>
+       },
+       {
+        path:"askadvertisement",
+        element:<AdvertisementSeller></AdvertisementSeller>
+       },
+
+        // user related routes
+        {
+          path:'payment',
+          element:<PaymentHistory></PaymentHistory>
         }
       ]
     }

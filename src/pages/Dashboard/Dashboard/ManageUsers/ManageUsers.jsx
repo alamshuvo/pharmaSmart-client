@@ -5,20 +5,22 @@ import Title from "../../../Home/Home/Title/Title";
 import { useQuery } from "@tanstack/react-query";
 import { button } from "@nextui-org/react";
 import Swal from "sweetalert2";
+import UseAxiosSecure from "../../../../hooks/UseAxiosSucure";
 
 const ManageUsers = () => {
-  const axiosPublic = UseAxiosPublic();
+//   const axiosPublic = UseAxiosPublic();
+const axiosSucure=UseAxiosSecure()
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await axiosPublic.get("/users");
+      const res = await axiosSucure.get("/users");
       return res.data;
     },
   });
 
   const handleusertoseller=(user)=>{
     console.log(user._id);
-   axiosPublic.patch(`/users/seller/${user._id}`)
+    axiosSucure.patch(`/users/seller/${user._id}`)
    .then(res=>{
     console.log(res.data);
     if (res.data.modifiedCount>0) {
@@ -36,7 +38,7 @@ const ManageUsers = () => {
 
 
   const handleselertouser=(user)=>{
-    axiosPublic.patch(`/users/user/${user._id}`)
+    axiosSucure.patch(`/users/user/${user._id}`)
     .then(res=>{
      console.log(res.data);
      if (res.data.modifiedCount>0) {
@@ -73,7 +75,7 @@ const ManageUsers = () => {
           All Users : {users.length}
         </h1>
       </div>
-      <div className="overflow-x-auto w-full font-popins ">
+      <div className="overflow-x-auto p-2 w-full font-popins ">
         <table className="table">
           {/* head */}
           <thead>

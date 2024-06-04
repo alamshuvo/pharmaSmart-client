@@ -62,21 +62,21 @@ useEffect(()=>{
     const unsubscrive=  onAuthStateChanged(auth,curentUser=>{
           setUser(curentUser);
           console.log("curent user",curentUser);
-        //   const userInfo={
-        //       email:curentUser?.email
-        //   }
-        //   if (curentUser) {
-        //       axiosPublic.post("/jwt",userInfo)
-        //       .then(res=>{
-        //           if (res.data.token) {
-        //               localStorage.setItem("access_token",res.data.token)
-        //           }
-        //       })
-        //   }
-        //   else{
-        //       // todo remove token if token store client side 
-        //       localStorage.removeItem("access_token")
-        //   }
+          const userInfo={
+              email:curentUser?.email
+          }
+          if (curentUser) {
+              axiosPublic.post("/jwt",userInfo)
+              .then(res=>{
+                  if (res.data.token) {
+                      localStorage.setItem("access_token",res.data.token)
+                  }
+              })
+          }
+          else{
+              // todo remove token if token store client side 
+              localStorage.removeItem("access_token")
+          }
           setLoading(false)
   
       });

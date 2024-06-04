@@ -1,13 +1,16 @@
-import { FaAd, FaBook, FaHome, FaPaypal, FaUsers } from "react-icons/fa";
+import { FaAd, FaBook, FaHome, FaPaypal, FaPlus, FaStripe, FaUsers } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import { BiSolidCategoryAlt } from "react-icons/bi";
 import { FaUpDown } from "react-icons/fa6";
+import UseAdmin from "../hooks/UseAdmin";
+import UseSeller from "../hooks/UseSeller";
 
 
 const DashBoard = () => {
   
+ const [isAdmin]=UseAdmin();
+ const [isSeller]=UseSeller()
  
-  const isAdmin = true;
 
   return (
     // dashboard navigation
@@ -30,7 +33,7 @@ const DashBoard = () => {
         </div>
         <div className="drawer-side w-32">
           <label
-            htmlFor="my-drawer-2"
+            htmlFor=""
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
@@ -38,7 +41,7 @@ const DashBoard = () => {
           {/* Sidebar content here */}
           <div className="md:min-w-64  min-h-screen bg-primary font-popins text-white">
             {isAdmin ? (
-              <ul className="md:p-4 p-1 my-5">
+              <ul className="md:p-4 p-1   md:flex md:flex-col md:justify-start md:items-start">
                 <li className="mb-3 border-b-3">
                   <NavLink to={"/dashboard/home"}>
                     <p className="flex text-center  md:flex-row flex-col gap-2 justify-center items-center">
@@ -84,10 +87,52 @@ const DashBoard = () => {
                   </NavLink>
                 </li>
               </ul>
-            ) : (
-              <></>
-            )}
+              ) : isSeller?<> 
+              
+              <ul className="md:p-4 p-1  md:flex md:flex-col md:justify-start md:items-start">
+                  <li className="mb-3 border-b-3">
+                  <NavLink to={"/dashboard/sellerhome"}>
+                    <p className="flex text-center  md:flex-row flex-col gap-2 justify-center items-center">
+                      <FaHome className="md:text-3xl"></FaHome> Home
+                    </p>
+                  </NavLink>
+                </li>
+                  <li className="mb-3 border-b-3">
+                  <NavLink to={"/dashboard/managemedicine"}>
+                    <p className="flex text-center  md:flex-row flex-col gap-2 justify-center items-center">
+                      <FaPlus className="md:text-3xl"> </FaPlus>Manage Medicine
+                    </p>
+                  </NavLink>
+                </li>
+                  <li className="mb-3 border-b-3">
+                  <NavLink to={"/dashboard/sellerpayment"}>
+                    <p className="flex text-center  md:flex-row flex-col gap-2 justify-center items-center">
+                      <FaStripe  className="md:text-3xl">  </FaStripe>Payment
+                    </p>
+                  </NavLink>
+                </li>
+                  <li className="mb-3 border-b-3">
+                  <NavLink to={"/dashboard/askadvertisement"}>
+                    <p className="flex text-center  md:flex-row flex-col gap-2 justify-center items-center">
+                      <FaAd className="md:text-3xl"></FaAd> Ask For Advertisement
+                    </p>
+                  </NavLink>
+                </li>
+                </ul>
+              
+              
+              
+              </>:<> <ul className=" md:flex md:flex-col md:justify-start md:items-start">
+                  <li className="mb-3 border-b-3">
+                  <NavLink to={"/dashboard/payment"}>
+                    <p className="flex text-center  md:flex-row flex-col gap-2 justify-center items-center">
+                      <FaStripe className="md:text-3xl"></FaStripe> Payment History
+                    </p>
+                  </NavLink>
+                </li>
+                </ul></>}
             <div className="divider text-white"> Others </div>
+            <ul className=" md:flex md:flex-col md:justify-start md:items-start">
             <li className="mb-3 border-b-3">
               <NavLink to={"/"}>
                 <p className="text-center flex md:flex-row flex-col gap-2 justify-center items-center">
@@ -95,6 +140,7 @@ const DashBoard = () => {
                 </p>
               </NavLink>
             </li>
+            </ul>
           </div>
         </div>
       </div>
