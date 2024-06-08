@@ -2,6 +2,14 @@ import { Link } from "react-router-dom";
 import Slide from "./Slide";
 
 const Banner = () => {
+
+
+
+
+
+
+
+  
   return (
     <div className="flex md:flex-row flex-col gap-3">
       {/* slider div */}

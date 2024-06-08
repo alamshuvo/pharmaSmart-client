@@ -16,7 +16,8 @@ const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <NextUIProvider>
+ <div className="max-w-7xl mx-auto">
+ <NextUIProvider>
       <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <HelmetProvider>
@@ -25,5 +26,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       </AuthProvider>
       </QueryClientProvider>
     </NextUIProvider>
+ </div>
   </React.StrictMode>
 );

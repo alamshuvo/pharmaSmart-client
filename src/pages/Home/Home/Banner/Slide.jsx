@@ -8,8 +8,26 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import UseAxiosPublic from "../../../../hooks/UseAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const Slide = () => {
+
+const axiosPublic=UseAxiosPublic()
+  const { data: advertisementb = [], isPending,refetch } = useQuery({
+    queryKey: ["advertisementb"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/advertisement`);
+      return res.data;
+    },
+  });
+
+console.log(advertisementb);
+
+const approvedItems = advertisementb.filter(item => item.status === "approve");
+
+
+
   return (
     <div>
       <Swiper
@@ -21,33 +39,30 @@ const Slide = () => {
         }}
         autoplay={{
           delay: 2500,
-          disableOnInteraction: true,
+          disableOnInteraction: false
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper1"
       >
-        <SwiperSlide>
+        {/* <SwiperSlide>
           <div>
             <img  className="w-full h-full" src="https://i.ibb.co/WysVt19/handsenitaizer.webp" alt="" />
             <div>
 
             </div>
           </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div>
-            {" "}
-            <img className="h-full" src="https://i.ibb.co/GCRZwWZ/skincare.webp" alt="" />
-          </div>
-        </SwiperSlide>
-        {/* <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide> */}
+        </SwiperSlide> */}
+       
+        {
+          approvedItems.map(item=><SwiperSlide key={item._id}>
+            <div>
+              {" "}
+              <img className="h-full" src={item.photo} alt="" />
+            </div>
+          </SwiperSlide>)
+        }
+      
       </Swiper>
     </div>
   );
