@@ -33,7 +33,7 @@ const DashBoard = () => {
             <FaUpDown></FaUpDown>
           </label>
           {/* dashboard sidebar */}
-          <div className="">
+          <div className="p-2">
             <Outlet></Outlet>
           </div>
         </div>
@@ -45,7 +45,12 @@ const DashBoard = () => {
           ></label>
 
           {/* Sidebar content here */}
-          <div className="md:min-w-64 flex flex-col justify-between  min-h-screen bg-primary font-popins text-white">
+          <div className="md:min-w-64 flex flex-col justify-between  min-h-screen bg-primary font-popins text-white"  style={{
+              backgroundImage: `url("https://i.ibb.co/xfmNXVf/sidebar3.png")`,
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+
+            }}>
             {isAdmin ? (
               <ul className="md:p-4 p-1   md:flex md:flex-col md:justify-start md:items-start">
                 <li className="mb-3 border-b-3">

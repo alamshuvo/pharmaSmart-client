@@ -13,7 +13,7 @@ import Swal from "sweetalert2";
 import UseAxiosPublic from "../../../../hooks/UseAxiosPublic";
 import UseAuth from "../../../../hooks/UseAuth";
 const img_hosting_key = import.meta.env.VITE_img_hosting_key;
-console.log(img_hosting_key);
+// console.log(img_hosting_key);
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 
 
@@ -40,6 +40,7 @@ const Modala = ({ text,refetch }) => {
       },
     });
     const photoa = response.data.data.display_url;
+    
    
  
     const a = {

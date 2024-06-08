@@ -22,6 +22,10 @@ import ManageMedicine from "../pages/Dashboard/Seller/ManageMedicine/ManageMedic
 import PaymentSeller from "../pages/Dashboard/Seller/PaymentSeller/PaymentSeller";
 import AdvertisementSeller from "../pages/Dashboard/Seller/Advertisement/AdvertisementSeller";
 import DashboardHome from "../pages/Dashboard/Common/DashboardHome";
+import PrivateRoutes from "./PrivateRoutes";
+import AdminRoutes from "./AdminRoutes";
+import SellerRoutes from "./SellerRoutes";
+import Cart from "../pages/Cart/Cart";
 
 
 
@@ -54,12 +58,16 @@ const router = createBrowserRouter([
         {
           path:"/shop",
           element:<Shop></Shop>
+        },
+        {
+          path:"/carts",
+          element:<Cart></Cart>
         }
       ]
     },
     {
       path:`dashboard`,
-      element:<DashBoard></DashBoard>,
+      element:<PrivateRoutes><DashBoard></DashBoard></PrivateRoutes>,
       errorElement:<Error></Error>,
       children:[
         {
@@ -70,23 +78,23 @@ const router = createBrowserRouter([
         // admin related routes
         {
           path:"manageusers",
-          element:<ManageUsers></ManageUsers>
+          element:<AdminRoutes><ManageUsers></ManageUsers></AdminRoutes>
         },
         {
           path:"managecategory",
-          element:<ManageCategory></ManageCategory>
+          element:<AdminRoutes><ManageCategory></ManageCategory></AdminRoutes>
         },
         {
           path:"paymentmanagement",
-          element:<Paymentmanagement></Paymentmanagement>
+          element:<AdminRoutes><Paymentmanagement></Paymentmanagement></AdminRoutes>
         },
         {
           path:"salesreport",
-          element:<SalesReport></SalesReport>
+          element:<AdminRoutes><SalesReport></SalesReport></AdminRoutes>
         },
         {
           path:'advertise',
-          element:<Advertisement></Advertisement>
+          element:<AdminRoutes><Advertisement></Advertisement></AdminRoutes>
         },
 
 
@@ -95,15 +103,15 @@ const router = createBrowserRouter([
      
        {
         path:"managemedicine",
-        element:<ManageMedicine></ManageMedicine>
+        element:<SellerRoutes><ManageMedicine></ManageMedicine></SellerRoutes>
        },
        {
         path:"sellerpayment",
-        element:<PaymentSeller></PaymentSeller>
+        element:<SellerRoutes><PaymentSeller></PaymentSeller></SellerRoutes>
        },
        {
         path:"askadvertisement",
-        element:<AdvertisementSeller></AdvertisementSeller>
+        element:<SellerRoutes><AdvertisementSeller></AdvertisementSeller></SellerRoutes>
        },
 
         // user related routes

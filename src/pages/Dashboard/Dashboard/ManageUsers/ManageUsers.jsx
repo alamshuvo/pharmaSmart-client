@@ -75,7 +75,7 @@ const axiosSucure=UseAxiosSecure()
           All Users : {users.length}
         </h1>
       </div>
-      <div className="overflow-x-auto p-2 w-full font-popins ">
+      <div className="overflow-x-auto p-2 w-full font-popins font-bold ">
         <table className="table">
           {/* head */}
           <thead>

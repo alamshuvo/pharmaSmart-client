@@ -14,13 +14,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "@nextui-org/react";
-import {
- 
-  
-  
- 
-  Button,
-} from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 
 import { Link, NavLink } from "react-router-dom";
 import { FaBookOpen, FaPenFancy, FaPlus, FaShoppingCart } from "react-icons/fa";
@@ -32,19 +26,21 @@ import UseAxiosPublic from "../../hooks/UseAxiosPublic";
 import Swal from "sweetalert2";
 import UseAdmin from "../../hooks/UseAdmin";
 import UseSeller from "../../hooks/UseAdmin";
+import UseCart from "../../hooks/UseCart";
 
 const Navvar = () => {
   const { user, logoutUser, loading } = UseAuth();
   const axiosPublic = UseAxiosPublic();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [isAdmin]=UseAdmin();
-  const[isSeller]=UseSeller()
+  const [isAdmin] = UseAdmin();
+  const [isSeller] = UseSeller();
   //   const {data:data=[],refetch}=useQuery({
   //     queryKey:"data",
   //     queryFn:async()=>{
   //         const res=await axiosPublic.get("/users")
   //     }
   //   })
+  const [carts,refetch]=UseCart()
   const handleLogout = () => {
     console.log("handle logout");
     logoutUser().then((res) => {
@@ -98,26 +94,38 @@ const Navvar = () => {
         </NavLink> */}
         <Dropdown className="font-popins  outline-none">
           <DropdownTrigger>
-            <Button variant="normal" className="text-[18px] border-b-1p border-primary">Languages</Button>
+            <Button
+              variant="normal"
+              className="text-[18px] border-b-1p border-primary"
+            >
+              Languages
+            </Button>
           </DropdownTrigger>
           <DropdownMenu aria-label="Static Actions">
             <DropdownItem key="new">Bangla</DropdownItem>
             <DropdownItem key="copy">English</DropdownItem>
             <DropdownItem key="edit">Hindi</DropdownItem>
-           
           </DropdownMenu>
         </Dropdown>
       </li>
-      <NavLink>
-        <li>
+      <NavLink to={"/carts"} >
+        {/* <li>
           <FaShoppingCart className="text-2xl text-primary" />
-        </li>
+        </li> */}
+     <li>
+          <button className="btn">
+          <FaShoppingCart className="text-2xl text-primary" />
+            <div className="badge ">{carts?.length}
+           
+            </div>
+          </button>
+     </li>
       </NavLink>
     </>
   );
   const menuItems = [navlink];
   return loading ? (
-    <p>Loading.......</p>
+    <progress className="progress w-56 mx-auto flex justify-center items-center"></progress>
   ) : (
     <div className="font-jost">
       <Navbar
@@ -203,12 +211,12 @@ const Navvar = () => {
                     key="dashboard"
                     textValue="dashboard"
                   >
-                  <Link to={"dashboard"}>
+                    <Link to={"dashboard"}>
                       <span className="text-xl flex justify-center items-center gap-2">
                         Dashboard
                         <FaBookOpen></FaBookOpen>{" "}
                       </span>
-                  </Link>
+                    </Link>
                   </DropdownItem>
                   <DropdownItem
                     value={null}
