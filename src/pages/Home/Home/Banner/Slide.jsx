@@ -58,7 +58,7 @@ const approvedItems = advertisementb.filter(item => item.status === "approve");
           approvedItems.map(item=><SwiperSlide key={item._id}>
             <div>
               {" "}
-              <img className="h-full" src={item.photo} alt="" />
+              <img className="h-full w-full" src={item.photo} alt="" />
             </div>
           </SwiperSlide>)
         }

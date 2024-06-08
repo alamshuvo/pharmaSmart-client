@@ -15,11 +15,12 @@ const AdvertisementSeller = () => {
   const { user } = UseAuth();
   const axiosPublic = UseAxiosPublic();
 
-  const { data: advertisement = [], isPending } = useQuery({
+  const { data: advertisement = [], isPending} = useQuery({
     queryKey: ["advertisement"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/advertisement/${user?.email}`);
       return res.data;
+     
     },
   });
 //   console.log(advertisement);
@@ -40,6 +41,7 @@ const AdvertisementSeller = () => {
         <Modaln refetch={refetch}></Modaln>
       </div>
       <div className="font-popins text-2xl font-bold">
+      
       <Table
         columns={[
           { key: "description", title: "description", dataType: DataType.String },

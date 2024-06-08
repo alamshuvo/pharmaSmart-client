@@ -42,7 +42,7 @@ const axiosPublic=UseAxiosPublic()
       >
     
         {
-          discountItems.map(item=> <SwiperSlide key={item._id}>
+          discountItems?.map(item=> <SwiperSlide key={item._id}>
             <img src={item.photo} className='object-cover' alt="" />
           </SwiperSlide>)
         }

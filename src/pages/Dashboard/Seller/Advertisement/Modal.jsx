@@ -40,35 +40,40 @@ const Modaln = ({ refetch }) => {
     const a = {
       description: data.description,
       photo: photoa,
-      status:"pending",
+      status: "pending",
       email: user?.email,
     };
     console.log(a);
 
-    await axiosPublic.post("/advertisement", a);
-    refetch();
+    await axiosPublic.post("/advertisement", a).then((res) => {
+      console.log(res);
+      if (res.data.insertedId) {
+        Swal.fire({
+            title: "Medicine Added ",
+            showClass: {
+              popup: `
+                  animate__animated
+                  animate__fadeInUp
+                  animate__faster
+                `,
+            },
+            hideClass: {
+              popup: `
+                  animate__animated
+                  animate__fadeOutDown
+                  animate__faster
+                `,
+            },
+          });
+      }
+      refetch();
+    });
+   
   };
 
-    const handlemedicine=()=>{
-
-      Swal.fire({
-        title: "Medicine Added ",
-        showClass: {
-          popup: `
-            animate__animated
-            animate__fadeInUp
-            animate__faster
-          `
-        },
-        hideClass: {
-          popup: `
-            animate__animated
-            animate__fadeOutDown
-            animate__faster
-          `
-        }
-      });
-    }
+  const handlemedicine = () => {
+ 
+  };
   return (
     <div>
       <Button
@@ -100,18 +105,22 @@ const Modaln = ({ refetch }) => {
                     {...register("photo", { required: true })}
                     className="file-input mt-3 file-input-bordered file-input-primary w-full max-w-xs"
                   />
-                   <div className="form-control mt-6">
-                    <button  className="btn bg-primary text-white hover:text-black">
+                  <div className="form-control mt-6">
+                    <button className="btn bg-primary text-white hover:text-black">
                       Add Advertise
                     </button>
                   </div>
                 </form>
               </ModalBody>
               <ModalFooter>
-                <Button onClick={handlemedicine} color="danger" variant="flat" onPress={onClose}>
+                <Button
+                  onClick={handlemedicine}
+                  color="danger"
+                  variant="flat"
+                  onPress={onClose}
+                >
                   Close
                 </Button>
-               
               </ModalFooter>
             </>
           )}

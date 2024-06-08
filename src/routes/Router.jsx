@@ -48,8 +48,9 @@ const router = createBrowserRouter([
           element:<SignUp></SignUp>
         },
         {
-          path:"/categorydetails",
-          element:<CategoryDetails></CategoryDetails>
+          path:"/categorydetails/:id",
+          element:<CategoryDetails></CategoryDetails>,
+          // loader:({params})=>fetch(`http://localhost:5000/managecategory/${params.id}`)
         },
         {
           path:"/updateprofile",
