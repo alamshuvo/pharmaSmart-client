@@ -26,6 +26,8 @@ import PrivateRoutes from "./PrivateRoutes";
 import AdminRoutes from "./AdminRoutes";
 import SellerRoutes from "./SellerRoutes";
 import Cart from "../pages/Cart/Cart";
+import CheckOut from "../pages/CheckOut/CheckOut";
+import Invoice from "../pages/Invoice/Invoice";
 
 
 
@@ -63,7 +65,16 @@ const router = createBrowserRouter([
         {
           path:"/carts",
           element:<Cart></Cart>
+        },
+        {
+          path:"/checkoutpage",
+          element:<CheckOut></CheckOut>
+        },
+        {
+          path:"/invoice",
+          element:<Invoice></Invoice>
         }
+
       ]
     },
     {

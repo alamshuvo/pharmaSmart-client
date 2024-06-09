@@ -132,7 +132,7 @@ const CategoryDetails = () => {
           </table>: <div>
             <div className="flex justify-center flex-col items-center text-2xl font-bold ">
                 <h1 className="flex justify-center items-center">Opps <FaEmpire></FaEmpire> </h1>
-                <h1>Data Not Found </h1>
+                <h1>Medicine Not Found </h1>
             </div>
           </div>
            }
