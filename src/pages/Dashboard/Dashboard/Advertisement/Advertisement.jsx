@@ -108,7 +108,7 @@ const Advertisement = () => {
                     </button>
                   )}
                 </td>
-                :
+             
               </tr>
             ))}
           </tbody>

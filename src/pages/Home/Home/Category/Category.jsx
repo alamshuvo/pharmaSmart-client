@@ -25,7 +25,7 @@ const Category = () => {
       <div className="border-2">
         <div className=" grid md:grid-cols-3 gap-3 grid-cols-1 cursor-pointer">
           {managecategory?.map((item) => (
-            <Link key={item._id} to={`/categorydetails/:${item._id}`}>
+            <Link key={item._id} to={`/categorydetails/${item.category}`}>
               <div className="">
                 <img
                   className="h-[300px] w-full object-cover"

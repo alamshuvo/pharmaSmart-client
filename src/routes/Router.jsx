@@ -48,9 +48,9 @@ const router = createBrowserRouter([
           element:<SignUp></SignUp>
         },
         {
-          path:"/categorydetails/:id",
+          path:"/categorydetails/:category",
           element:<CategoryDetails></CategoryDetails>,
-          // loader:({params})=>fetch(`http://localhost:5000/managecategory/${params.id}`)
+          loader:({params})=>fetch(`http://localhost:5000/managecategory/medicine/${params.category}`)
         },
         {
           path:"/updateprofile",

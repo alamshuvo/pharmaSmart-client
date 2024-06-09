@@ -45,41 +45,41 @@ const DashBoard = () => {
           ></label>
 
           {/* Sidebar content here */}
-          <div className="md:min-w-64 flex flex-col justify-between  min-h-screen bg-primary font-popins text-white"  style={{
+          <div className="md:min-w-64 flex flex-col justify-between  min-h-screen bg-primary font-popins text-white "  style={{
               backgroundImage: `url("https://i.ibb.co/xfmNXVf/sidebar3.png")`,
               backgroundSize: 'cover',
               backgroundRepeat: 'no-repeat',
 
             }}>
             {isAdmin ? (
-              <ul className="md:p-4 p-1   md:flex md:flex-col md:justify-start md:items-start">
-                <li className="mb-3 border-b-3">
+              <ul className="md:p-4 p-1 gap-5  md:flex md:flex-col md:justify-start md:items-start">
+                <li className="mb-3 ">
                   <NavLink to={"/dashboard"} end   className={({ isActive }) =>
                         isActive
                           ? "  text-special-button-hover border-special-button-hover "
-                          : "text-center border-b-3 border-primary font-normal gap-6 text-[18px] "
+                          : "text-center  border-primary font-normal gap-6 text-[18px] "
                       }>
                     <p className="flex text-center  md:flex-row flex-col gap-2 justify-center items-center">
                       <FaHome className="md:text-2xl"></FaHome> Admin Home
                     </p>
                   </NavLink>
                 </li>
-                <li className="mb-3 border-b-3">
+                <li className="mb-3 ">
                   <NavLink to={"/dashboard/manageusers"}   className={({ isActive }) =>
                         isActive
                           ? "  text-special-button-hover border-special-button-hover "
-                          : "text-center border-b-3 border-primary font-normal gap-6 text-[18px] "
+                          : "text-center  border-primary font-normal gap-6 text-[18px] "
                       }>
                     <p className="text-center flex md:flex-row flex-col gap-2 justify-center items-center">
                       <FaUsers className="md:text-2xl"></FaUsers> Manage Users
                     </p>
                   </NavLink>
                 </li>
-                <li className="mb-3 border-b-3">
+                <li className="mb-3 ">
                   <NavLink to={"/dashboard/managecategory"}   className={({ isActive }) =>
                         isActive
                           ? "  text-special-button-hover border-special-button-hover "
-                          : "text-center border-b-3 border-primary font-normal gap-6 text-[18px] "
+                          : "text-center  border-primary font-normal gap-6 text-[18px] "
                       }>
                     <p className="text-center flex md:flex-row flex-col gap-2 justify-center items-center">
                       <BiSolidCategoryAlt className="md:text-2xl" /> Manage
@@ -87,11 +87,11 @@ const DashBoard = () => {
                     </p>
                   </NavLink>
                 </li>
-                <li className="mb-3 border-b-3">
+                <li className="mb-3 ">
                   <NavLink to={"/dashboard/paymentmanagement"}   className={({ isActive }) =>
                         isActive
                           ? "  text-special-button-hover border-special-button-hover "
-                          : "text-center border-b-3 border-primary font-normal gap-6 text-[18px] "
+                          : "text-center  border-primary font-normal gap-6 text-[18px] "
                       }>
                     <p className="text-center flex md:flex-row flex-col gap-2 justify-center items-center">
                       <FaPaypal className="md:text-2xl"></FaPaypal> Payment
@@ -99,22 +99,22 @@ const DashBoard = () => {
                     </p>
                   </NavLink>
                 </li>
-                <li className="mb-3 border-b-3">
+                <li className="mb-3 ">
                   <NavLink to={"/dashboard/salesreport"}   className={({ isActive }) =>
                         isActive
                           ? "  text-special-button-hover border-special-button-hover "
-                          : "text-center border-b-3 border-primary font-normal gap-6 text-[18px] "
+                          : "text-center  border-primary font-normal gap-6 text-[18px] "
                       }>
                     <p className="text-center flex md:flex-row flex-col gap-2 justify-center items-center">
                       <FaBook className="md:text-2xl"></FaBook>Sales Report
                     </p>
                   </NavLink>
                 </li>
-                <li className="mb-3 border-b-3">
+                <li className="mb-3 ">
                   <NavLink to={"/dashboard/advertise"}   className={({ isActive }) =>
                         isActive
                           ? "  text-special-button-hover border-special-button-hover "
-                          : "text-center border-b-3 border-primary font-normal gap-6 text-[18px] "
+                          : "text-center  border-primary font-normal gap-6 text-[18px] "
                       }>
                     <p className="text-center flex md:flex-row flex-col gap-2 justify-center items-center">
                       <FaAd className="md:text-2xl"></FaAd> Manage Advertise
@@ -124,15 +124,15 @@ const DashBoard = () => {
               </ul>
             ) : isSeller ? (
               <>
-                <ul className="md:p-4 p-1  md:flex md:flex-col md:justify-start md:items-start">
-                  <li className="mb-3 border-b-3">
+                <ul className="md:p-4 p-1 gap-5  md:flex md:flex-col md:justify-start md:items-start">
+                  <li className="mb-3 ">
                     <NavLink
                       to={"/dashboard"} 
                       end
                       className={({ isActive }) =>
                         isActive
                           ? "  text-special-button-hover border-special-button-hover "
-                          : "text-center border-b-3 border-primary font-normal gap-6 text-[18px] "
+                          : "text-center  border-primary font-normal gap-6 text-[18px] "
                       }
                     >
                       <p className="flex text-center  md:flex-row flex-col gap-2 justify-center items-center">
@@ -140,13 +140,13 @@ const DashBoard = () => {
                       </p>
                     </NavLink>
                   </li>
-                  <li className="mb-3 border-b-3">
+                  <li className="mb-3 ">
                     <NavLink
                       to={"/dashboard/managemedicine"}
                       className={({ isActive }) =>
                         isActive
                           ? "  text-special-button-hover border-special-button-hover "
-                          : "text-center border-b-3 border-primary font-normal gap-6 text-[18px] "
+                          : "text-center  border-primary font-normal gap-6 text-[18px] "
                       }
                     >
                       <p className="flex text-center  md:flex-row flex-col gap-2 justify-center items-center">
@@ -155,13 +155,13 @@ const DashBoard = () => {
                       </p>
                     </NavLink>
                   </li>
-                  <li className="mb-3 border-b-3">
+                  <li className="mb-3 ">
                     <NavLink
                       to={"/dashboard/sellerpayment"}
                       className={({ isActive }) =>
                         isActive
                           ? "  text-special-button-hover border-special-button-hover "
-                          : "text-center border-b-3 border-primary font-normal gap-6 text-[18px] "
+                          : "text-center  border-primary font-normal gap-6 text-[18px] "
                       }
                     >
                       <p className="flex text-center  md:flex-row flex-col gap-2 justify-center items-center">
@@ -169,13 +169,13 @@ const DashBoard = () => {
                       </p>
                     </NavLink>
                   </li>
-                  <li className="mb-3 border-b-3">
+                  <li className="mb-3 ">
                     <NavLink
                       to={"/dashboard/askadvertisement"}
                       className={({ isActive }) =>
                         isActive
                           ? "  text-special-button-hover border-special-button-hover "
-                          : "text-center border-b-3 border-primary font-normal gap-6 text-[18px] "
+                          : "text-center  border-primary font-normal gap-6 text-[18px] "
                       }
                     >
                       <p className="flex text-center  md:flex-row flex-col gap-2 justify-center items-center">
@@ -189,15 +189,15 @@ const DashBoard = () => {
             ) : (
               <>
                 {" "}
-                <ul className=" md:flex md:flex-col md:justify-start md:items-start">
-                  <li className="mb-3 border-b-3">
+                <ul className=" md:flex md:flex-col gap-5 md:justify-start md:items-start">
+                  <li className="mb-3 ">
                     <NavLink
                       to={"/dashboard"}
                       end
                       className={({ isActive }) =>
                         isActive
                           ? "  text-special-button-hover border-special-button-hover "
-                          : "text-center border-b-3 border-primary font-normal gap-6 text-[18px] "
+                          : "text-center  border-primary font-normal gap-6 text-[18px] "
                       }
                     >
                       <p className="flex text-center  md:flex-row flex-col gap-2 justify-center items-center">
@@ -210,14 +210,14 @@ const DashBoard = () => {
               </>
             )}
             <div className="divider text-white"> Others </div>
-            <ul className=" md:flex md:flex-col md:justify-start md:items-start">
-              <li className="mb-3 border-b-3">
+            <ul className=" md:flex md:flex-col gap-5 md:justify-start md:items-start">
+              <li className="mb-3 ">
                 <NavLink
                   to={"/updateprofile"}
                   className={({ isActive }) =>
                     isActive
                       ? "  text-special-button-hover border-special-button-hover "
-                      : "text-center border-b-3 border-primary font-normal gap-6 text-[18px] "
+                      : "text-center  border-primary font-normal gap-6 text-[18px] "
                   }
                 >
                   <p className="text-center flex md:flex-row flex-col gap-2 justify-center items-center">
@@ -225,13 +225,13 @@ const DashBoard = () => {
                   </p>
                 </NavLink>
               </li>
-              <li className="mb-3 border-b-3">
+              <li className="mb-3 ">
                 <NavLink
                   to={"/"}
                   className={({ isActive }) =>
                     isActive
                       ? "  text-special-button-hover border-special-button-hover "
-                      : "text-center border-b-3 border-primary font-normal gap-6 text-[18px] "
+                      : "text-center  border-primary font-normal gap-6 text-[18px] "
                   }
                 >
                   <p className="text-center flex md:flex-row flex-col gap-2 justify-center items-center">

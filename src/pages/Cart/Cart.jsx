@@ -5,13 +5,14 @@ import Title from "../Home/Home/Title/Title";
 const Cart = () => {
   const [carts, refetch] = UseCart();
   console.log(carts);
-  // const totalPrice=carts?.reduce(((total,item)=>{
-  //   total+(item.price)
-  // }),0)
+  
+
   const totalPrice = carts?.reduce((sum, cart) => {
-    return sum + parseFloat(cart.price);
+    return sum + parseFloat((cart.price));
   }, 0);
  console.log(carts,totalPrice);
+
+
   return (
     <div>
       <Helmeta title={"Carts"}></Helmeta>
