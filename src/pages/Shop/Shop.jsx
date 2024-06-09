@@ -43,6 +43,7 @@ const Shop = () => {
       generic: item?.generic,
       photo:item?.photo,
       buyerEmal: user?.email || "",
+      total:1
      
     };
    if (!user || !user?.email) {
@@ -84,7 +85,7 @@ const Shop = () => {
   }
 
   return (
-    <div className="my-20">
+    <div className="my-20 font-popins font-bold text-2xl">
       <Title heading={"Shop"} short={"shop more"}></Title>
 
       <div className="overflow-x-auto">

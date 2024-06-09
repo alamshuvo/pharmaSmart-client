@@ -54,6 +54,7 @@ const Modala = ({ text,refetch }) => {
       category: data.category,
       company: data.company,
       email: user.email,
+      total:1,
     };
    
 

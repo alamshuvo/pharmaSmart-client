@@ -21,7 +21,7 @@ import { FaBookOpen, FaPenFancy, FaPlus, FaShoppingCart } from "react-icons/fa";
 import { LuLogOut } from "react-icons/lu";
 import { Avatar } from "@nextui-org/react";
 import UseAuth from "../../hooks/UseAuth";
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
 import UseAxiosPublic from "../../hooks/UseAxiosPublic";
 import Swal from "sweetalert2";
 import UseAdmin from "../../hooks/UseAdmin";
