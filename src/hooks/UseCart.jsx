@@ -15,7 +15,10 @@ const UseCart = () => {
         return res.data;
     }
   })
-  return [carts,refetch]
+  const totalPrice = carts?.reduce((sum, cart) => {
+    return sum + parseFloat((cart.price)*(cart.total));
+  }, 0);
+  return [carts,refetch,totalPrice]
 };
 
 export default UseCart;

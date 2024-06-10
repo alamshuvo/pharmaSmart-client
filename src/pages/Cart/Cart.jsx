@@ -6,16 +6,20 @@ import Swal from "sweetalert2";
 import UseAuth from "../../hooks/UseAuth";
 import { FaEmpire, FaMinus, FaPlus } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
+import UseAxiosPublic from "../../hooks/UseAxiosPublic";
+import { button } from "@nextui-org/react";
 
 const Cart = () => {
-  const [carts, refetch] = UseCart();
+  const [carts, refetch,totalPrice] = UseCart();
   const {user}=UseAuth()
   console.log(carts);
+  const axiosPublic=UseAxiosPublic()
   
 
-  const totalPrice = carts?.reduce((sum, cart) => {
-    return sum + parseFloat((cart.price));
-  }, 0);
+  // const totalPrice = carts?.reduce((sum, cart) => {
+  //   return sum + parseFloat((cart.price)*(cart.total));
+  // }, 0);
+  const isCartEmpty = carts?.length === 0;
  console.log(carts,totalPrice);
 
  const handleDelete = () => {
@@ -82,6 +86,59 @@ const handleDeleteOne = (id) => {
 
 
 
+const handleAddBlog = (item) => {
+ const total=item?.total+1
+  const updatedData={total}
+
+ 
+  axiosPublic.put(`http://localhost:5000/carts/id/${item?._id}`, updatedData)
+    .then((response) => {
+      // Handle the response
+      console.log(response.data);
+          
+      if (response.data.modifiedCount > 0) {
+      
+          Swal.fire({
+            icon: "success",
+            title: "Wow...",
+            text: "Your Medicine Quantaty Increase  Sucessfully!",
+            footer: '<a href="#">Why do I have this issue?</a>',
+          });
+          refetch();
+        }
+    })
+    .catch((error) => {
+      // Handle errors
+    });
+};
+const handleDecreseMedicine = (item) => {
+ const total=item?.total-1
+  const updatedData={total}
+
+ 
+  axiosPublic.put(`http://localhost:5000/carts/ida/${item?._id}`, updatedData)
+    .then((response) => {
+      // Handle the response
+      console.log(response.data);
+          
+      if (response.data.modifiedCount > 0) {
+      
+          Swal.fire({
+            icon: "success",
+            title: "Wow...",
+            text: "Your Medicine Quantaty Decrease  Sucessfully!",
+            footer: '<a href="#">Why do I have this issue?</a>',
+          });
+          refetch();
+        }
+    })
+    .catch((error) => {
+      // Handle errors
+    });
+};
+
+
+
 
 
   return (
@@ -93,10 +150,14 @@ const handleDeleteOne = (id) => {
         <div className="flex md:flex-row flex-col  justify-center  md:justify-around gap-4 my-10 font-popins">
           <p className="font-bold md:text-2xl text-center">Total Orders : {carts?.length}</p>
           <p className="font-bold md:text-2xl text-center">Total Price : {totalPrice} </p>
-          <button onClick={()=>handleDelete()} className="btn bg-primary hover:bg-special-button-hover hover:text-black text-white">Clear All</button>
-         <Link to={"/checkoutpage"}>
-         <button className="btn bg-primary w-full hover:bg-special-button-hover hover:text-black text-white">Check Out</button>
-         </Link>
+         {
+          isCartEmpty? <button className="btn cursor-pointer" disabled>Clear All</button>: <button onClick={()=>handleDelete()} className="btn bg-primary hover:bg-special-button-hover hover:text-black text-white">Clear All</button>
+         }
+        {
+          isCartEmpty? <button className="btn cursor-pointer" disabled>CheckOut</button>: <Link to={"/checkoutpage"}>
+          <button    className="btn bg-primary w-full hover:bg-special-button-hover hover:text-black text-white">Check Out</button>
+          </Link>
+        }
         </div>
       </div>
       <div className="overflow-x-auto my-16">
@@ -136,7 +197,7 @@ const handleDeleteOne = (id) => {
               <td>{item.name}</td>
               <td className="uppercase ">{item.company}</td>
               <td className="uppercase ">{item.price}</td>
-              <td className="uppercase flex  justify-start items-center gap-5"><button className="btn bg-green-600 " ><FaPlus className="text-white"></FaPlus></button>{item?.total} <button className="btn bg-red-600 text-white"><FaMinus className=""></FaMinus></button></td>
+              <td className="uppercase flex  justify-start items-center gap-5"><button onClick={()=>handleAddBlog(item)} className="btn bg-green-600 " ><FaPlus className="text-white"></FaPlus></button>{item?.total} <button onClick={()=>handleDecreseMedicine(item)} className="btn bg-red-600 text-white"><FaMinus className=""></FaMinus></button></td>
               <td className="uppercase ">{item?.category}</td>
               <td className="uppercase "><button onClick={()=>handleDeleteOne(item?._id)} className="bg-red-600 text-white btn "><FaDeleteLeft className="text-2xl"></FaDeleteLeft></button></td>
               
