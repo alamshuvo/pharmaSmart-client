@@ -23,9 +23,16 @@ const DashboardHome = () => {
       return res.data;
     },
   });
+  const { data: payment = [] } = useQuery({
+    queryKey: ["payment", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/payment`);
+      return res.data;
+    },
+  });
 //   console.log(payments);
-const paidPayments = payments.filter(payment => payment.status === 'paid');
-const pendingPayments = payments.filter(payment => payment.status === 'pending');
+const paidPayments = payment.filter(payment => payment.status === 'paid');
+const pendingPayments = payment.filter(payment => payment.status === 'pending');
 const totalPaid = paidPayments.reduce((total, payment) => total + payment.price, 0);
 
 // Calculate the total price for pending payments
@@ -40,8 +47,8 @@ console.log(pendingPayments);
    <div>
     <div className="w-4/6 mx-auto">
         <div className="flex justify-between gap-5 md:flex-row flex-col cursor-pointer font-bold">
-            <div className="border-2 w-full h-[200px] flex justify-center items-center bg-primary text-white hover:bg-special-button-hover hover:text-black rounded-lg md:text-2xl text-xl uppercase"><p className="flex justify-center items-center gap-3 ">Paid total {totalPaid} <FaSuitcase className="text-2xl"></FaSuitcase></p></div>
-            <div className="border-2 w-full h-[200px] flex justify-center items-center bg-primary text-white hover:bg-special-button-hover hover:text-black rounded-lg md:text-2xl text-xl uppercase"><p className="flex justify-center items-center gap-3">Pending total {totalPending} <GiPayMoney className="text-2xl" /></p></div>
+            <div className="border-2 w-full h-[200px] flex justify-center items-center bg-primary text-white hover:bg-special-button-hover hover:text-black rounded-lg md:text-2xl text-xl uppercase"><p className="flex justify-center items-center gap-3 ">Paid total  {totalPaid} $ <FaSuitcase className="text-2xl"></FaSuitcase></p></div>
+            <div className="border-2 w-full h-[200px] flex justify-center items-center bg-primary text-white hover:bg-special-button-hover hover:text-black rounded-lg md:text-2xl text-xl uppercase"><p className="flex justify-center items-center gap-3">Pending total {totalPending} $ <GiPayMoney className="text-2xl" /></p></div>
         </div>
     </div>
    </div>
