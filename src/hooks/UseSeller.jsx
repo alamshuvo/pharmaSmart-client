@@ -4,7 +4,7 @@ import UseAxiosSecure from "./UseAxiosSucure";
 
 
 
-const UseAdmin = () => {
+const UseSeller = () => {
     const axiousSecure=UseAxiosSecure();
     const {user,loading}=UseAuth();
  const {data:isSeller,isPending:isSellerLoading}=useQuery({
@@ -18,4 +18,4 @@ const UseAdmin = () => {
  return [isSeller,isSellerLoading]
 };
 
-export default UseAdmin;
+export default UseSeller;
