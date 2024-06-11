@@ -5,6 +5,8 @@ import UseAuth from "../../../hooks/UseAuth";
 import UseAxiosSecure from "../../../hooks/UseAxiosSucure";
 import { useQuery } from "@tanstack/react-query";
 import Title from "../../Home/Home/Title/Title";
+import { FaSuitcase } from "react-icons/fa";
+import { GiPayMoney } from "react-icons/gi";
 
 const DashboardHome = () => {
   const [isAdmin] = UseAdmin();
@@ -21,13 +23,30 @@ const DashboardHome = () => {
       return res.data;
     },
   });
-  console.log(payments);
+//   console.log(payments);
+const paidPayments = payments.filter(payment => payment.status === 'paid');
+const pendingPayments = payments.filter(payment => payment.status === 'pending');
+const totalPaid = paidPayments.reduce((total, payment) => total + payment.price, 0);
+
+// Calculate the total price for pending payments
+const totalPending = pendingPayments.reduce((total, payment) => total + payment.price, 0);
+console.log(totalPaid,totalPending,paidPayments);
 
   return (
     <div >
         <Title heading={"Dashboard Home"} short={"show your details "}></Title>
       {isAdmin ? (
-        <div>admin</div>
+        <div>
+   <div>
+    <div className="w-4/6 mx-auto">
+        <div className="flex justify-between gap-5 md:flex-row flex-col cursor-pointer font-bold">
+            <div className="border-2 w-full h-[200px] flex justify-center items-center bg-primary text-white hover:bg-special-button-hover hover:text-black rounded-lg md:text-2xl text-xl uppercase"><p className="flex justify-center items-center gap-3 ">Paid total {totalPaid} <FaSuitcase className="text-2xl"></FaSuitcase></p></div>
+            <div className="border-2 w-full h-[200px] flex justify-center items-center bg-primary text-white hover:bg-special-button-hover hover:text-black rounded-lg md:text-2xl text-xl uppercase"><p className="flex justify-center items-center gap-3">Pending total {totalPending} <GiPayMoney className="text-2xl" /></p></div>
+        </div>
+    </div>
+   </div>
+
+        </div>
       ) : isSeller ? (
         <div>seller</div>
       ) : (
