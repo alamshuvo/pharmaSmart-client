@@ -30,7 +30,7 @@ const totalPaid = paidPayments.reduce((total, payment) => total + payment.price,
 
 // Calculate the total price for pending payments
 const totalPending = pendingPayments.reduce((total, payment) => total + payment.price, 0);
-console.log(totalPaid,totalPending,paidPayments);
+console.log(pendingPayments);
 
   return (
     <div >
