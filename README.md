@@ -41,5 +41,7 @@
 - ka-table
 - framer-motion
 - react-helmet-async
+# How to Start it locally
+To clone and run this project locally, start by cloning the repository using git clone https://github.com/alamshuvo/pharmaSmart-client and navigating into the project directory with cd parmasmart. Next, install the necessary dependencies by running npm install. Finally, start the development server with npm start. Ensure you have a .env file with the necessary configuration, such as the database connection string, to complete the setup.
 
 
